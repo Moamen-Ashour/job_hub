@@ -71,8 +71,8 @@ class _LoginPageState extends State<LoginPage> {
                 hintText: "Email",
                 validator: (email) {
                   if (email!.isEmail || !email.contains("@")) {
-                    return "Please write a valid Email"
-                  }else{
+                    return "Please write a valid Email";
+                  } else {
                     return null;
                   }
                 },
