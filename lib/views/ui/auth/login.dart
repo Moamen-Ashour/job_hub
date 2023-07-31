@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:jobhub/constants/app_constants.dart';
 import 'package:jobhub/controllers/exports.dart';
+import 'package:jobhub/models/request/auth/login_model.dart';
 import 'package:jobhub/views/common/app_bar.dart';
 import 'package:jobhub/views/common/app_style.dart';
 import 'package:jobhub/views/common/custom_btn.dart';
@@ -35,16 +36,20 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Consumer<LoginNotifier>(builder: (context, loginNotifier, child) {
+      loginNotifier.getPrefs();
+
       return Scaffold(
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(50),
             child: CustomAppBar(
-              child: GestureDetector(
-                onTap: () {
-                  Get.back;
-                },
-                child: Icon(CupertinoIcons.arrow_left),
-              ),
+              child: loginNotifier.entrypoint && !loginNotifier.loggedIn
+                  ? GestureDetector(
+                      onTap: () {
+                        Get.back;
+                      },
+                      child: Icon(CupertinoIcons.arrow_left),
+                    )
+                  : const SizedBox.shrink(),
               text: "Login",
             ),
           ),
@@ -129,7 +134,20 @@ class _LoginPageState extends State<LoginPage> {
                 CustomButton(
                     text: 'Login',
                     onTap: () {
-                      Get.to(() => MainScreen());
+                      if (loginNotifier.validateAndSave()) {
+                        LoginModel model = LoginModel(
+                          email: email.text ?? "",
+                          password: password.text ?? "",
+                        );
+
+                        loginNotifier.userLogin(model);
+                      } else {
+                        Get.snackbar(
+                            "Sign Failed", "Please Check You Credentials",
+                            colorText: Color(kLight.value),
+                            backgroundColor: Colors.red,
+                            icon: const Icon(Icons.add_alert));
+                      }
                     }),
               ],
             ),

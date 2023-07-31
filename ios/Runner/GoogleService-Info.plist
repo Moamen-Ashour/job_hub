@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>934875928910-t5pka2qc9ifl35d1mssf5m2pc6m4rum8.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.934875928910-t5pka2qc9ifl35d1mssf5m2pc6m4rum8</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBywewyrgfP1XnuXQ3QAMBNJp65EeJed6k</string>
+	<key>GCM_SENDER_ID</key>
+	<string>934875928910</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.moamen.jobhub</string>
+	<key>PROJECT_ID</key>
+	<string>jobhub-application</string>
+	<key>STORAGE_BUCKET</key>
+	<string>jobhub-application.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:934875928910:ios:b9b41d9987e143b3c3661f</string>
+</dict>
+</plist>

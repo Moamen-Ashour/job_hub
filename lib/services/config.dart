@@ -1,5 +1,5 @@
 class Config {
-  static const apiUrl = "<server - url>";
+  static const apiUrl = "jobhubbackend-production-3ec3.up.railway.app";
   static const String loginUrl = "/api/login";
   static const String signupUrl = "/api/register";
   static const String jobs = "/api/jobs";
