@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:jobhub/controllers/exports.dart';
 import 'package:jobhub/controllers/login_provider.dart';
 import 'package:jobhub/models/request/auth/profile_update_model.dart';
@@ -133,7 +134,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                     CustomTextField(
                       controller: skill0,
                       hintText: "Profesional Skills ",
-                      keyboardType: TextInputType.phone,
+                      keyboardType: TextInputType.text,
                       validator: (skill0) {
                         if (skill0!.isEmpty) {
                           return "Please enter a skill";
@@ -146,7 +147,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                     CustomTextField(
                       controller: skill1,
                       hintText: "Profesional Skills ",
-                      keyboardType: TextInputType.phone,
+                      keyboardType: TextInputType.text,
                       validator: (skill1) {
                         if (skill1!.isEmpty) {
                           return "Please enter a skill";
@@ -159,7 +160,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                     CustomTextField(
                       controller: skill2,
                       hintText: "Profesional Skills ",
-                      keyboardType: TextInputType.phone,
+                      keyboardType: TextInputType.text,
                       validator: (skill2) {
                         if (skill2!.isEmpty) {
                           return "Please enter a skill";
@@ -172,7 +173,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                     CustomTextField(
                       controller: skill3,
                       hintText: "Profesional Skills ",
-                      keyboardType: TextInputType.phone,
+                      keyboardType: TextInputType.text,
                       validator: (skill3) {
                         if (skill3!.isEmpty) {
                           return "Please enter a skill";
@@ -185,7 +186,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                     CustomTextField(
                       controller: skill4,
                       hintText: "Profesional Skills ",
-                      keyboardType: TextInputType.phone,
+                      keyboardType: TextInputType.text,
                       validator: (skill4) {
                         if (skill4!.isEmpty) {
                           return "Please enter a skill";
@@ -195,10 +196,38 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                       },
                     ),
                     HeightSpacer(size: 20),
-                    CustomButton(
-                      onTap: () {},
-                      text: "Update Profile",
-                    ),
+                    Consumer<ImageUpLoader>(
+                        builder: (context, imageUploader, child) {
+                      return CustomButton(
+                        onTap: () {
+                          if (imageUploader.imageFile.isEmpty &&
+                              imageUploader.imageUrl == null) {
+                            Get.snackbar(
+                              "Image Missing",
+                              "Please Upload an image proceed",
+                              colorText: Color(kLight.value),
+                              backgroundColor: Color(kLightBlue.value),
+                              icon: const Icon(Icons.add_alert),
+                            );
+                          } else {
+                            ProfileUpdateReq model = ProfileUpdateReq(
+                              location: location.text,
+                              phone: phone.text,
+                              profile: imageUploader.imageUrl.toString(),
+                              skills: [
+                                skill0.text,
+                                skill1.text,
+                                skill2.text,
+                                skill3.text,
+                                skill4.text,
+                              ],
+                            );
+                            loginNotifier.updateProfile(model);
+                          }
+                        },
+                        text: "Update Profile",
+                      );
+                    })
                   ],
                 ),
               )
